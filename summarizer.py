@@ -1,76 +1,119 @@
-# summarizer.py - Summarize text using OpenAI
-# This script demonstrates how to use the OpenAI API to summarize articles and text
-# Created as part of the AI Research Assistant project
+# summarizer.py - Complete summarizer with all functions
+# This script contains all the core functions used by app.py
 
-# Import required libraries
-from openai import OpenAI
 import os
+import datetime
+from openai import OpenAI
 from dotenv import load_dotenv
 
-# Load the API key from the .env file
 load_dotenv()
-
-# Initialize the OpenAI client with your API key
 client = OpenAI()
 
-def summarize(text, max_length=30):
+def read_file(file_path):
+    """
+    Read text from a file.
+    
+    Args:
+        file_path (str): Path to the file
+    
+    Returns:
+        str: Content of the file or error message
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return file.read()
+    except FileNotFoundError:
+        return f"Error: File '{file_path}' not found."
+    except Exception as e:
+        return f"Error reading file: {str(e)}"
+
+def save_summary(summary, output_path):
+    """
+    Save summary to a file.
+    
+    Args:
+        summary (str): The summary text
+        output_path (str): Path to save the summary
+    
+    Returns:
+        bool: True if successful, False otherwise
+    """
+    try:
+        with open(output_path, 'w', encoding='utf-8') as file:
+            file.write(summary)
+        return True
+    except Exception as e:
+        print(f"Error saving summary: {str(e)}")
+        return False
+
+def log_summary(input_text, output_text):
+    """
+    Log the input and output to a file.
+    
+    Args:
+        input_text (str): The original text
+        output_text (str): The summary
+    """
+    try:
+        with open("summary_log.txt", "a", encoding='utf-8') as log_file:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            log_file.write(f"\n--- {timestamp} ---\n")
+            log_file.write(f"Input: {input_text[:200]}...\n")
+            log_file.write(f"Output: {output_text}\n")
+    except Exception as e:
+        print(f"Warning: Could not write to log: {str(e)}")
+
+def summarize(text, max_length=100):
     """
     Summarize the given text using OpenAI's GPT model.
     
     Args:
-        text (str): The text to summarize. This can be any length.
-        max_length (int): Maximum length of the summary in words. Default is 30.
+        text (str): The text to summarize
+        max_length (int): Maximum length of the summary in words
     
     Returns:
-        str: The summarized text, condensed to the specified length.
-    
-    Example:
-        >>> summarize("Python is a programming language that lets you work quickly.", max_length=10)
-        'Python is a fast, efficient programming language.'
+        str: The summarized text or error message
     """
+    if not text or len(text.strip()) == 0:
+        return "Error: No text provided."
+    
     try:
-        # Create a chat completion request to OpenAI
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": f"You are a helpful assistant that summarizes text concisely in {max_length} words or less."},
                 {"role": "user", "content": f"Summarize this: {text}"}
-            ]
+            ],
+            temperature=0.5,
+            max_tokens=200
         )
         
-        # Check if the response is empty
-        if not response.choices[0].message.content:
+        summary = response.choices[0].message.content
+        
+        if not summary:
             return "Error: Received empty response from the API."
         
-        # Extract and return just the summary text
-        return response.choices[0].message.content
-    
+        # Log the summary
+        log_summary(text, summary)
+        
+        return summary
+        
     except Exception as e:
         return f"Error: {str(e)}"
 
-# The code below only runs when you execute this script directly
+# For testing when run directly
 if __name__ == "__main__":
+    print("Testing summarizer functions...")
     
-    # Test 1: Short text
-    short_text = "Python is a programming language that lets you work quickly and integrate systems more effectively."
-    print("Test 1 - Short Text:")
-    print(summarize(short_text, max_length=20))
-    print()
-
-    # Test 2: Long text - Interstellar Comet article
-    long_text = """An interstellar comet that blazed past the sun last year could be nearly three times older than our solar system and is unlike anything ever before seen in our cosmic back yard, astronomers said on Monday.
-
-The comet 3I/Atlas is just the third visitor from beyond our solar system that humanity has ever observed, its unusual brightness offering scientists an unprecedented opportunity to study something that came from elsewhere in the galaxy.
-
-After being spotted in July last year, the space rock prompted excitement online, with one prominent Harvard researcher speculating it could be an alien spacecraft: a theory that Nasa shot down. Now, observations made by the world's most powerful telescopes are revealing more about the unique comet.
-
-According to a study published in the journal Nature, 3I/Atlas could be up to 12bn years old. Our solar system is believed to have formed about 4.5bn years ago.
-
-The lead study author, Martin Cordiner of Nasa's Goddard Space Flight Center, told Agence France-Presse that "maybe it's the oldest object to have been observed in our solar system". However, there could be "edge-case scenarios" that offer other explanations for the comet's unusual chemical composition, he added.
-
-Daniel Lawler
-Mon 22 Jun 2026 12.37 EDT"""
+    # Test read_file
+    test_content = read_file("sample_input.txt")
+    if test_content.startswith("Error"):
+        print("No sample file found. Creating one...")
+        with open("sample_input.txt", "w", encoding='utf-8') as f:
+            f.write("This is a sample text file for testing the summarizer.\n\nPython is a programming language that lets you work quickly and integrate systems more effectively.")
     
-    print("Test 2 - Long Text (Interstellar Comet Article):")
-    print(summarize(long_text, max_length=50))
-    print()
+    # Test summarize
+    test_text = "Python is a programming language that lets you work quickly and integrate systems more effectively."
+    summary = summarize(test_text, max_length=20)
+    print(f"Test summary: {summary}")
+    
