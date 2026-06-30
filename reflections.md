@@ -41,3 +41,23 @@ I learned to paste the entire text at once and use Ctrl+Z to signal completion.
 - Interactive tools help with testing and learning
 - Comments and docstrings make code maintainable
 
+### Day 5 (June 30, 2026)
+
+**What I learned today:**
+- How to build a complete application with a menu interface
+- How to integrate multiple functions into one application
+- How to handle user input in a loop
+- How to create a polished user experience
+- How to write a professional README
+
+**What was difficult:**
+- Fixing the encoding error when viewing logs
+- Making sure all the menu options worked correctly together
+
+**How I solved it:**
+- Added error handling for encoding issues in the log viewer
+- Tested each menu option individually to make sure they worked
+
+**What I will improve tomorrow:**
+- Add more features like different summary styles
+- Create a web interface for the summarizer
