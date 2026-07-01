@@ -53,3 +53,24 @@ I built a complete AI-powered text summarizer application from scratch using Pyt
 - Generate embeddings for chunks
 - Store embeddings in memory
 - Set up Chroma vector database
+
+### Day 9 
+
+**What I learned today:**
+- How to generate embeddings using OpenAI's text-embedding-ada-002
+- How to set up ChromaDB as a persistent vector database
+- How to add documents to a collection
+- How to perform similarity searches
+- How to integrate PDF processing with embeddings
+
+**What was difficult:**
+- Understanding how ChromaDB stores and retrieves embeddings
+- Figuring out the metadata format required for ChromaDB
+
+**How I solved it:**
+- Read the ChromaDB documentation and tested with small examples
+- Added proper metadata to each chunk before storing
+
+**What I will do tomorrow:**
+- Build the question-answering component
+- Connect retrieval with GPT
