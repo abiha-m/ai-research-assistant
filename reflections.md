@@ -34,3 +34,22 @@
 
 ### One Sentence Summary of Week 1
 I built a complete AI-powered text summarizer application from scratch using Python and the OpenAI API.
+
+### Day 8 
+
+**What I learned today:**
+- How to load and extract text from PDFs using PyPDFLoader
+- How to split text into overlapping chunks
+- How to handle different PDF structures
+- How to extract metadata from PDFs
+
+**What was difficult:**
+- [Write one sentence about something challenging]
+
+**How I solved it:**
+- [Write one sentence about how you solved it]
+
+**What I will do tomorrow:**
+- Generate embeddings for chunks
+- Store embeddings in memory
+- Set up Chroma vector database
