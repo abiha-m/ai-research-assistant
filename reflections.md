@@ -74,3 +74,24 @@ I built a complete AI-powered text summarizer application from scratch using Pyt
 **What I will do tomorrow:**
 - Build the question-answering component
 - Connect retrieval with GPT
+
+### Day 10 
+
+**What I learned today:**
+- How to build a question-answering system using RAG
+- How to integrate retrieval with GPT
+- How to build a Streamlit UI
+- How to manage conversation history
+
+**What was difficult:**
+- Understanding how to connect all the components together
+- Making the Streamlit interface user-friendly
+
+**How I solved it:**
+- Broke down the problem into smaller steps and tested each one
+- Used Streamlit's built-in components for a clean interface
+
+**What I will do tomorrow:**
+- Polish the Streamlit UI
+- Add error handling
+- Test with multiple PDFs
