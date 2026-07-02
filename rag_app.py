@@ -1,5 +1,7 @@
 # rag_app.py
 # Streamlit web interface for RAG question answering
+# rag_app.py
+# Streamlit web interface for RAG question answering
 
 import streamlit as st
 from qa_engine import QAEngine
@@ -32,14 +34,35 @@ with st.sidebar:
         st.success(f"Uploaded: {uploaded_file.name}")
 
         if st.button("Process PDF"):
-            with st.spinner("Processing PDF..."):
+            # Progress bar and status updates
+            progress_bar = st.progress(0)
+            
+            with st.status("Processing PDF...", expanded=True) as status:
+                status.update(label="Loading PDF...")
+                progress_bar.progress(25)
+                
                 result = process_pdf_and_store(file_path)
-                if result.get("error"):
-                    st.error(f"Error: {result['error']}")
-                else:
-                    st.success(f"Processed {result['pages']} pages, {result['total_chunks']} chunks")
-                    st.session_state.engine = QAEngine("research_docs")
-                    st.session_state.messages = []
+                
+                status.update(label="Chunking text...")
+                progress_bar.progress(50)
+                
+                status.update(label="Creating embeddings and storing...")
+                progress_bar.progress(75)
+                
+                progress_bar.progress(100)
+                status.update(label="Complete!", state="complete")
+            
+            if result.get("error"):
+                st.error(f"Error: {result['error']}")
+            else:
+                st.success(f"✅ Processed {result['pages']} pages, {result['total_chunks']} chunks")
+                st.balloons()
+                st.session_state.engine = QAEngine("research_docs")
+                st.session_state.messages = []
+            
+            # Clean up temp file
+            if os.path.exists(file_path):
+                os.remove(file_path)
 
     st.divider()
 
@@ -56,7 +79,7 @@ with st.sidebar:
     st.caption(f"Documents in collection: {stats.get('document_count', 0)}")
 
 # Main chat interface
-st.subheader("Chat with your documents")
+st.subheader("💬 Chat with your documents")
 
 # Display chat history
 for message in st.session_state.messages:
