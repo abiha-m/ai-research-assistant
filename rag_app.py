@@ -1,7 +1,5 @@
 # rag_app.py
 # Streamlit web interface for RAG question answering
-# rag_app.py
-# Streamlit web interface for RAG question answering
 
 import streamlit as st
 from qa_engine import QAEngine
@@ -43,22 +41,28 @@ with st.sidebar:
                 
                 result = process_pdf_and_store(file_path)
                 
-                status.update(label="Chunking text...")
-                progress_bar.progress(50)
-                
-                status.update(label="Creating embeddings and storing...")
-                progress_bar.progress(75)
-                
-                progress_bar.progress(100)
-                status.update(label="Complete!", state="complete")
-            
-            if result.get("error"):
-                st.error(f"Error: {result['error']}")
-            else:
-                st.success(f"✅ Processed {result['pages']} pages, {result['total_chunks']} chunks")
-                st.balloons()
-                st.session_state.engine = QAEngine("research_docs")
-                st.session_state.messages = []
+                # Check if result is None
+                if result is None:
+                    st.error("Error: Failed to process PDF. Please check the file and try again.")
+                    progress_bar.empty()
+                    status.update(label="Failed!", state="error")
+                else:
+                    status.update(label="Chunking text...")
+                    progress_bar.progress(50)
+                    
+                    status.update(label="Creating embeddings and storing...")
+                    progress_bar.progress(75)
+                    
+                    progress_bar.progress(100)
+                    status.update(label="Complete!", state="complete")
+                    
+                    if result.get("error"):
+                        st.error(f"Error: {result['error']}")
+                    else:
+                        st.success(f"✅ Processed {result['pages']} pages, {result['total_chunks']} chunks")
+                        st.balloons()
+                        st.session_state.engine = QAEngine("research_docs")
+                        st.session_state.messages = []
             
             # Clean up temp file
             if os.path.exists(file_path):
