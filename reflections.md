@@ -95,3 +95,67 @@ I built a complete AI-powered text summarizer application from scratch using Pyt
 - Polish the Streamlit UI
 - Add error handling
 - Test with multiple PDFs
+
+### Day 11 
+
+**What I learned today:**
+- How to support multiple PDFs in one collection
+- How to implement cost tracking for API calls
+- How to add progress indicators in Streamlit
+- How to handle edge cases and errors gracefully
+
+**What was difficult:**
+- [Write one sentence about something challenging]
+
+**How I solved it:**
+- [Write one sentence about how you solved it]
+
+**What I will do tomorrow:**
+- Write a complete technical design document
+- Prepare final demos
+## Week 2 Summary (July 1-3, 2026)
+
+### What I Built:
+- Complete AI Research Assistant (RAG) system
+- PDF processing pipeline with text extraction
+- Embeddings and vector storage with ChromaDB
+- Question answering with GPT-3.5-turbo
+- Streamlit web interface with progress indicators
+- Multi-PDF support
+- Cost tracking for API usage
+- Complete technical documentation (DESIGN.md)
+
+### Skills I Learned:
+- PDF extraction with LangChain PyPDFLoader
+- Text chunking with overlap strategy
+- OpenAI embeddings (text-embedding-ada-002)
+- Vector databases (ChromaDB)
+- Semantic search
+- Retrieval-Augmented Generation (RAG)
+- Streamlit UI development
+- API cost tracking
+
+### Certifications Working On:
+- LangChain for LLM Applications (DeepLearning.AI) - In progress
+
+### Challenges I Faced:
+1. Fixing encoding errors when reading PDFs
+2. Understanding how to optimize chunk size for retrieval
+3. Debugging the ChromaDB metadata issue
+4. Making the Streamlit progress bar work correctly
+
+### How I Solved Them:
+1. Added proper error handling with try/except blocks
+2. Tested different chunk sizes (500 chars, 50 overlap)
+3. Added metadata with proper formatting for each chunk
+4. Used Streamlit's status and progress bar components correctly
+
+### What I Learned About Myself:
+- I can build complex AI systems by breaking them down into smaller components
+- I enjoy the challenge of debugging and solving technical problems
+- I'm capable of learning new technologies quickly when building real projects
+
+### Three Sentences for Essays:
+1. I built a complete RAG system that can ingest PDFs and answer user questions using advanced AI techniques.
+2. The most difficult part was optimizing chunk sizes and retrieval parameters to get accurate responses.
+3. I learned that building production-ready AI systems requires attention to detail, error handling, and user experience.
