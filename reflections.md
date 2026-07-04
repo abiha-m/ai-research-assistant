@@ -113,7 +113,7 @@ I built a complete AI-powered text summarizer application from scratch using Pyt
 **What I will do tomorrow:**
 - Write a complete technical design document
 - Prepare final demos
-## Week 2 Summary (July 1-3, 2026)
+## Week 2 
 
 ### What I Built:
 - Complete AI Research Assistant (RAG) system
@@ -159,3 +159,55 @@ I built a complete AI-powered text summarizer application from scratch using Pyt
 1. I built a complete RAG system that can ingest PDFs and answer user questions using advanced AI techniques.
 2. The most difficult part was optimizing chunk sizes and retrieval parameters to get accurate responses.
 3. I learned that building production-ready AI systems requires attention to detail, error handling, and user experience.
+
+Final Review
+
+#### What I Built
+- Complete RAG system with PDF processing, embeddings, vector search, and question answering
+- Streamlit UI for easy interaction
+- Multi-PDF support
+- Cost tracking system
+- Progress indicators for better user experience
+
+#### Skills Learned
+- RAG architecture
+- Vector databases (ChromaDB)
+- Embeddings (OpenAI text-embedding-ada-002)
+- Semantic search
+- LLM integration (GPT-3.5-turbo)
+- Streamlit web development
+- Cost tracking for API usage
+- PDF processing with LangChain
+
+#### Certifications Earned
+- LangChain for LLM Applications (DeepLearning.AI) - Complete
+- ChatGPT Prompt Engineering for Developers (DeepLearning.AI) - Complete
+- Git & GitHub (freeCodeCamp) - Complete
+
+#### Challenges Faced
+- Understanding how to structure the RAG pipeline end-to-end
+- Fixing ChromaDB metadata errors when adding chunks
+- Debugging the Streamlit progress bar implementation
+- Handling large PDFs efficiently
+
+#### How I Solved Them
+- Broke the pipeline into smaller components and tested each one
+- Added proper metadata formatting for each chunk
+- Used Streamlit's status and progress components correctly
+- Optimized chunk size to 500 characters with 50 overlap
+
+#### What I Learned About Myself
+- I can learn new technologies quickly when I have a real project to build
+- I enjoy solving problems and debugging code
+
+#### What I Will Do Differently in Project 2
+- Plan the architecture more carefully before writing code
+- Add more error handling from the start
+
+#### Final Thoughts on Project 1
+This project taught me how to build a complete AI application from scratch. I learned how PDF processing, embeddings, vector databases, and LLMs work together to create a powerful RAG system. The most valuable lesson was that building systems that work end-to-end is more important than perfect code. I'm proud of what I built in two weeks.
+
+#### Three Sentences for My Application Essay
+1. I built a complete AI research assistant that can read and understand PDFs.
+2. The hardest part was integrating the vector database with the LLM for accurate retrieval.
+3. I learned that building systems that work end-to-end is more important than perfect code.
