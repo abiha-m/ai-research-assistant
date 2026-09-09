@@ -3,3 +3,11 @@ venv/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local vector database
+chroma_db/
+
+# Generated runtime files
+cost_log.json
+summary_log.txt
+summary_log_backup.txt
